@@ -64,12 +64,16 @@ namespace ServiceBusConsoleApp
 
         private static List<User> GetUser()
         {
-            List<User> users = new List<User>()
+            List<User> users = new List<User>();
+
+            for (int i = 0; i< 10; i++)
             {
-                new User{Id = 1, Name = "Pratik"},
-                new User{ Id = 2, Name = "Archana"},
-                new User {Id = 3, Name = "Hirva"}
-            };
+                users.Add(new User
+                {
+                    Id = i,
+                    Name = Guid.NewGuid().ToString()
+                });
+            }
 
             return users;
         }
