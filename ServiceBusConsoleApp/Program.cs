@@ -12,9 +12,15 @@ namespace ServiceBusConsoleApp
         static ITopicClient topicClient;
         const string ServiceBusConnectionString = "Endpoint=sb://pkservicebus.servicebus.windows.net/;SharedAccessKeyName=PK-Send;SharedAccessKey=jxq+zqeI8TlAT0CuwqYMmA0JuNFC4Hm9L9hlrO6NyNI=";
         const string TopicName = "pkservicebustopic";
-        //static ITopicClient topicClient;
+        static string name, textMsg = "";
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter Name: ");
+            name = Console.ReadLine();
+
+            Console.WriteLine("Enter Message: ");
+            textMsg = Console.ReadLine();
+
             SendMessage().GetAwaiter().GetResult();
         }
 
@@ -66,14 +72,12 @@ namespace ServiceBusConsoleApp
         {
             List<User> users = new List<User>();
 
-            for (int i = 0; i< 10; i++)
+            users.Add(new User
             {
-                users.Add(new User
-                {
-                    Id = i,
-                    Name = Guid.NewGuid().ToString()
-                });
-            }
+                Id = 1,
+                Name = name,
+                TextMessage = textMsg
+            });        
 
             return users;
         }
@@ -84,6 +88,7 @@ namespace ServiceBusConsoleApp
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string TextMessage { get; set; }
     }
 
     public class ServiceBusMessage
