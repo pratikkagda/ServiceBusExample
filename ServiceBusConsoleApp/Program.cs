@@ -59,7 +59,7 @@ namespace ServiceBusConsoleApp
                 throw ex;
             }
 
-            Console.WriteLine("Message has sent");
+            Console.WriteLine("Message has sent: {0}", busMessage);
         }
 
         private static List<User> GetUser()
